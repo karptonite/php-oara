@@ -228,7 +228,7 @@ class Oara_Network_Publisher_Amazon extends Oara_Network {
 		$urls[] = new Oara_Curl_Request($this->_networkServer."/gp/associates/network/reports/main.html", array());
 		$exportReport = $this->_client->get($urls);
 
-		if (preg_match("/logout%26openid.ns/", $exportReport[0])) {
+		if (strpos($exportReport[0], "logout") !== false) {
 
 			$dom = new Zend_Dom_Query($exportReport[0]);
 			$idBox = array();
